@@ -1,0 +1,3 @@
+PA: 1 PB: 1 Method is: Either Result: 1 Date of Calculation: 03/02/2021 22:05:54
+PA=: 0.5 ;PB=: 0.5 ;Method is=: Combined ;Result=: 0.25 ;Date of Calculation=: 04/02/2021 00:54:42
+PA=: 0.5 ;PB=: 0.5 ;Method is=: Either ;Result=: 0.75 ;Date of Calculation=: 04/02/2021 00:55:15

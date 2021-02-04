@@ -1,0 +1,65 @@
+﻿@page "/"
+
+@using Calculator.Data
+@inject CalculatorService calculator;
+
+
+<h1>Welcome to Redington Interview Project, Blazor Edition...</h1>
+<br />
+
+<label>Enter The First Probability: </label>
+<input @bind-value="@PA" type="number" style="width:50%;margin-left: 22px;" />
+<br />
+
+
+<label>Enter The Second Probability: </label>
+<input @bind-value="@PB" type="number" style="width:50%" />
+<br />
+
+<label>Select Method of Calculation: </label>
+<select @bind="@TypeOfCalculation" style="width: 230px;margin-left: 4px;height: 28px;">
+    <option value="Combined">Combined</option>
+    <option value="Either">Either</option>
+</select>
+
+<br />
+
+<p>PA: @PA</p>
+<p>PB: @PB</p>
+
+
+<p>Result: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+
+<br />
+<br />
+<p>@Error</p>
+
+<br />
+<br />
+
+<p>Current Date: @dateTime</p>
+
+@code {
+    private double PA = 0;
+    private double PB = 0;
+    private double currentCount = 0;
+    private string TypeOfCalculation = "";
+    private DateTime dateTime = DateTime.Now;
+    private string Error = "";
+    protected async Task Calculate()
+    {
+
+        ProbabilityData cal = await calculator.GetResultAsync(PA, PB, TypeOfCalculation);
+        if (String.IsNullOrEmpty(cal.Error))
+        {
+            currentCount = cal.currentCount;
+        }
+        else
+        {
+            currentCount = 0;
+            Error = cal.Error;
+        }
+    }
+}
